@@ -13,12 +13,14 @@ class SubTitleWrapper extends StatelessWidget {
   final SubtitleController subtitleController;
   final dynamic videoPlayerController;
   final SubtitleStyle subtitleStyle;
+  final Widget intermediateChild;
 
   SubTitleWrapper({
     Key key,
     @required this.videoChild,
     @required this.subtitleController,
     @required this.videoPlayerController,
+    this.intermediateChild,
     this.subtitleStyle = const SubtitleStyle(),
   }) : super(key: key);
 
@@ -27,6 +29,7 @@ class SubTitleWrapper extends StatelessWidget {
     return Stack(
       children: <Widget>[
         videoChild,
+        if (intermediateChild != null) intermediateChild,
         subtitleController.showSubtitles
             ? Positioned(
                 top: subtitleStyle.position.top,
